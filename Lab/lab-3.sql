@@ -87,7 +87,7 @@ CREATE TABLE [SalesLT].[ProductAttribute] (
 
 INSERT INTO [SalesLT].[ProductAttribute] (ProductID, Attributes)
 VALUES
-(1, 
+(706, 
  '<Attributes>
      <Waga>1.2</Waga>
      <Wysokoœæ>10</Wysokoœæ>
@@ -95,7 +95,7 @@ VALUES
      <Kolor>Czerwony</Kolor>
      <Materia³>Plastik</Materia³>
   </Attributes>'),
-(2,
+(707,
  '<Attributes>
      <Waga>0.5</Waga>
      <Wysokoœæ>8</Wysokoœæ>
@@ -103,7 +103,7 @@ VALUES
      <Kolor>Niebieski</Kolor>
      <Materia³>Metal</Materia³>
   </Attributes>'),
-  (3, 
+  (708, 
   '<Attributes>
      <Waga>1</Waga>
      <Wysokoœæ>3</Wysokoœæ>
@@ -111,7 +111,7 @@ VALUES
      <Kolor>Zielony</Kolor>
      <Materia³>Drewno</Materia³>
   </Attributes>'),
-  (4,
+  (709,
  '<Attributes>
      <Waga>0.8</Waga>
      <Wysokoœæ>10</Wysokoœæ>
@@ -119,7 +119,7 @@ VALUES
      <Kolor>Czarny</Kolor>
      <Materia³>Szk³o</Materia³>
   </Attributes>'),
-(5,
+(710,
  '<Attributes>
      <Waga>1.5</Waga>
      <Wysokoœæ>12</Wysokoœæ>
@@ -128,4 +128,74 @@ VALUES
      <Materia³>Metal</Materia³>
   </Attributes>');
 
+  -- =============================================
+  -- Zadanie 7
+  -- =============================================
 
+  INSERT INTO [SalesLT].[ProductAttribute] (ProductID, Attributes)
+VALUES
+(711,
+ '<Attributes>
+     <Waga>2.0</Waga>
+     <Wysokoœæ>15</Wysokoœæ>
+     <Szerokoœæ>7</Szerokoœæ>
+     <Kolor>¯ó³ty</Kolor>
+     <Materia³>Plastik</Materia³>
+  </Attributes>'),
+(712,
+ '<Attributes>
+     <Waga>0.9</Waga>
+     <Wysokoœæ>9</Wysokoœæ>
+     <Szerokoœæ>4</Szerokoœæ>
+     <Kolor>Bia³y</Kolor>
+     <Materia³>Metal</Materia³>
+  </Attributes>'),
+(713,
+ '<Attributes>
+     <Waga>1.3</Waga>
+     <Wysokoœæ>11</Wysokoœæ>
+     <Szerokoœæ>5</Szerokoœæ>
+     <Kolor>Zielony</Kolor>
+     <Materia³>Drewno</Materia³>
+  </Attributes>'),
+(714,
+ '<Attributes>
+     <Waga>0.7</Waga>
+     <Wysokoœæ>8</Wysokoœæ>
+     <Szerokoœæ>3</Szerokoœæ>
+     <Kolor>Br¹zowy</Kolor>
+     <Materia³>Szk³o</Materia³>
+  </Attributes>'),
+(715,
+ '<Attributes>
+     <Waga>1.8</Waga>
+     <Wysokoœæ>13</Wysokoœæ>
+     <Szerokoœæ>6</Szerokoœæ>
+     <Kolor>Czarny</Kolor>
+     <Materia³>Metal</Materia³>
+  </Attributes>');
+
+  -- =============================================
+  -- Zadanie 8
+  -- =============================================
+ 
+UPDATE [SalesLT].[ProductAttribute]
+SET Attributes.modify('replace value of (/Attributes/Kolor/text())[1] with concat("K", (/Attributes/Kolor/text())[1])');
+
+UPDATE [SalesLT].[ProductAttribute]
+SET Attributes.modify('replace value of (/Attributes/Material/text())[1] with concat("K", (/Attributes/Material/text())[1])');
+
+-- =============================================
+-- Zadanie 9
+-- =============================================
+
+DECLARE @jsonData NVARCHAR(MAX) = N'{
+    "Name": "Jan",
+    "Age": 30,
+    "City": "Warszawa",
+    "Country": "Polska"
+}';
+
+SET @jsonData = JSON_MODIFY(@jsonData, '$.Name', '230665');
+
+SELECT @jsonData AS UpdatedJson;
